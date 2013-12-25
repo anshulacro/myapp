@@ -1,4 +1,7 @@
 UserAuth::Application.routes.draw do
+  resources :articles
+
+
   match "signup", :to => "users#new"
   match "login", :to => "sessions#login"
   match "logout", :to => "sessions#logout"

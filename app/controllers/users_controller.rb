@@ -9,13 +9,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      session[:user_id]=@user.id
+      UserMailer.registration_confirmation(@user).deliver
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
+      redirect_to(:controller => 'sessions', :action => 'home')
     else
       flash[:notice] = "Form is invalid"
       flash[:color]= "invalid"
+      render "new"
     end
-    render "new"
+    
   end
 
 
