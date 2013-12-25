@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id]=@user.id
-      UserMailer.registration_confirmation(@user).deliver
+      # UserMailer.registration_confirmation(@user).deliver
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
       redirect_to(:controller => 'sessions', :action => 'home')
