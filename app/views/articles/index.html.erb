@@ -39,29 +39,29 @@
 <h1>Simple Blog Feed</h1>
 <% unless @latest_blog_posts.nil? %>
  The latest <%= pluralize(@latest_blog_posts.count, "post") %> from the blog.
- <ul>
+ <ol class="breadcrumb">
 
   <% @latest_blog_posts.each do |post| %>
 
    <% if nil != post && post.respond_to?(:pubDate) %>
     <li>
-     <%= link_to post.title, post.link, :target => "_blank" %>
-     </br>
+     <%= link_to post.title, post.link, :target => "_blank",:class=>"panel panel-primary"%>
+     <br></br>
      <%=post.description%>
-     </br>
+     <br></br>
      (<%= post.pubDate %> ago via blog feed)
      </br>
     </li>
    <% end %>
   <% end %>
- </ul>
+ </ol>
 <% else %>
  <p>
   <em>No blog posts to show.</em>
  </p>
 <% end %>
 <br></br>
-
+<div class="list-group">
   <%=@page.css("title")[0].name%>
   </br>
   <%=@page.css("title")[0].text%>
@@ -78,4 +78,4 @@
   <%=link_to link['href'],link['href'] %>
   </br>
 <%end%>
-</hr>
+</div>
