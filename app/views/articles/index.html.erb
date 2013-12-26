@@ -1,3 +1,41 @@
+<%- model_class = Article -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to article.id, article_path(article) %></td>
+        <td><%= article.name %></td>
+        <td><%= article.content %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_article_path(article), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      article_path(article),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_article_path,
+            :class => 'btn btn-primary' %>
+<br></br>
+
 <h1>Simple Blog Feed</h1>
 <% unless @latest_blog_posts.nil? %>
  The latest <%= pluralize(@latest_blog_posts.count, "post") %> from the blog.
@@ -24,15 +62,20 @@
 <% end %>
 <br></br>
 
-
-<%@articles.each do |article|%>
-
-    <td><%=link_to "#{article.name}",article_path(article)%></td>
-    </br>
-    <td><%=article.content%>
-    </br>
-
-
+  <%=@page.css("title")[0].name%>
+  </br>
+  <%=@page.css("title")[0].text%>
+  </br>
+  <%links = @page.css("a")%>
+  <%=links.length %>
+  </br>
+  <%=link_to links[0].text,''%>
+  </br>
+  <%=link_to links[0]["href"],links[0]["href"]%>
+  </br>
+<% news_links = @page.css("a").select{|link| link['data-category'] == "news"} %>
+<% news_links.each do |link| %>
+  <%=link_to link['href'],link['href'] %>
+  </br>
 <%end%>
-</br>
-<%=link_to "New Article",new_article_path%>
+</hr>

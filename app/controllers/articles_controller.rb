@@ -1,5 +1,8 @@
 require 'rss'
 
+require 'nokogiri' 
+require 'open-uri'  
+
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
@@ -7,8 +10,10 @@ class ArticlesController < ApplicationController
 
 
   def index
-
     begin
+       #PAGE_URL = "http://ruby.bastardsbook.com/files/hello-webpage.html"      
+        @page = Nokogiri::HTML(open("http://ruby.bastardsbook.com/files/hello-webpage.html"  ))
+   
        @latest_blog_posts = RSS::Parser.parse(open("http://asciicasts.com/episodes.xml").read, false).items[0..5]
      rescue
        # Do nothing, just continue.  The view will skip the blog section if the feed is nil.

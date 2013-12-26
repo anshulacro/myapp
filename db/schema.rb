@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131225095253) do
+ActiveRecord::Schema.define(:version => 20131226102640) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,38 @@ ActiveRecord::Schema.define(:version => 20131225095253) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "points", :force => true do |t|
+    t.integer  "tracksegment_id"
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "elevation"
+    t.string   "description"
+    t.datetime "point_created_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "points", ["tracksegment_id"], :name => "index_points_on_tracksegment_id"
+
+  create_table "tracks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "gpx_file_name"
+    t.string   "gpx_content_type"
+    t.integer  "gpx_file_size"
+    t.datetime "gpx_updated_at"
+  end
+
+  create_table "tracksegments", :force => true do |t|
+    t.integer  "track_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tracksegments", ["track_id"], :name => "index_tracksegments_on_track_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

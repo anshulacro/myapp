@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tracksegment: 
+  name: MyString
+  latitude: 1.5
+  longitude: 1.5
+  elevation: 1.5
+  description: MyString
+  point_created_at: 2013-12-26 15:56:40
+
+two:
+  tracksegment: 
+  name: MyString
+  latitude: 1.5
+  longitude: 1.5
+  elevation: 1.5
+  description: MyString
+  point_created_at: 2013-12-26 15:56:40

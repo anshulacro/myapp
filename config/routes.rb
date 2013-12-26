@@ -1,4 +1,7 @@
 UserAuth::Application.routes.draw do
+  resources :tracks
+
+
   resources :articles
 
 
