@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226102640) do
+ActiveRecord::Schema.define(:version => 20131227083427) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 20131226102640) do
     t.string   "token"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.float    "amount"
+    t.integer  "responseCode"
+    t.string   "responseMessage"
+    t.string   "xref"
+    t.float    "amountReceived"
+    t.string   "transactionID"
+    t.string   "cardNumberMask"
+    t.string   "cardTypeCode"
+    t.string   "cardType"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "points", :force => true do |t|

@@ -18,7 +18,9 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @track }
+      format.json { 
+    render :json => @track.to_json(:methods => [:polyline],:only => [:name]) 
+  }
     end
   end
 

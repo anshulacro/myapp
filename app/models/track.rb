@@ -53,4 +53,12 @@ class Track < ActiveRecord::Base
     end
   end
 
+  def polyline_points
+    self.points.map(&:latlng)
+  end
+
+  def polyline
+    Polylines::Encoder.encode_points(self.polyline_points)
+  end
+
 end

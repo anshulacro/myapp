@@ -102,6 +102,7 @@ GEM
       mime-types
     pg (0.17.1)
     polyglot (0.3.3)
+    polylines (0.1.1)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -172,6 +173,7 @@ DEPENDENCIES
   omniauth-facebook
   paperclip
   pg
+  polylines
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   therubyracer

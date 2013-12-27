@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UserAuth</title>
+  <title>Tutorial Track</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= google_maps_api %>
+  <%= track_id_to_js(@track.id) if @track %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%if @current_user.present? %>
+	<%=link_to "logout","/logout"%>
+<%end%>
+<div class="container">
+<%= yield %>
+
+</body>
+</html>
